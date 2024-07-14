@@ -4,24 +4,53 @@
     padding: 0;
 }
 
+:root {
+    --primary: #1a2d33;
+    --secondary: #f3cfaf;
+    --white-bg: #fafafa;
+    --white-bg-alpha-100: rgb(255 255 255 / 0.1);
+    --white-bg-alpha-500: rgb(255 255 255 / 0.3);
+    --bg-dark-alpha-100: rgb(0 0 0 / 0.1);
+    --bg-dark-alpha-500: rgb(0 0 0 / 0.3);
+    --shadow-dark-100: rgb(0 0 0 / 0.05);
+    --shadow-light-100: rgb(255 255 255 / 0.05);
+    --txt-primary-500: #2a393e;
+    --txt-primary-700: #132429;
+    --txt-secondary-500: #d9b493;
+    --txt-secondary-700: #ffd9b7;
+}
+
 #main {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row no-wrap;
     width: max(850px, 100%);
+    position: absolute;
 }
 
 #left {
     width: 40%;
+    flex: 0 0 auto;
+    min-width: 350px;
     min-height: 100dvh;
-    background-color: palegreen;
-    position: relative;
+    background-color: var(--secondary);
+    background-image: url(./photos/_2cc343b8-37f6-49b8-a54b-d4132dae6817.jpeg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment:local;
+    display: flex;
+    justify-content: center;
+    /* position: fixed; */
+    overflow-x: hidden;
 }
+
 
 #organization {
     position: absolute;
     width: 100%;
+    min-width: inherit;
     height: 8rem;
-    background: rgb(0 0 0 / 0.4);
+    background: var(--bg-dark-alpha-500);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,47 +58,104 @@
     font-size: clamp(1.5rem, 1rem + 2vw, 3rem);
     font-weight: bold;
     color: white;
+    backdrop-filter: blur(5px);
+}
+
+#source {
+    position: fixed;
+    bottom: 0.5rem;
+    font-size: clamp(0.75rem, 0.25rem + 1vw, 1.2rem);
+    font-weight: 500;
+    letter-spacing: 0.15ch;
+}
+
+#source-link {
+    color: var(--txt-primary-500);
+    font-weight: 700;
+    font-size: 1.1em;
+    transition: all 0.3s;
+}
+
+#source-link:hover {
+    filter: brightness(180%);
 }
 
 #right {
     width: 60%;
     min-height: 100dvh;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    position: relative;
+    background-color: var(--primary);
+    overflow: auto;
+}
+
+#form-body {
+    width: 80%;
+    height: fit-content;    
+    margin: 1.5rem;
     display: flex;  
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    position: relative;
+    background: var(--white-bg-alpha-500);
+    box-shadow: 1rem 1rem 1rem var(--shadow-dark-100),  
+                -1rem -1rem 1rem var(--shadow-light-100);
+    border-radius: 1rem;    
+    backdrop-filter: blur(1rem);
+    padding: 2rem;
 }
 
 #org-info {
     margin-top: 2rem;
-    width: clamp(40ch, 80%, 75ch);
+    width: clamp(40ch, 80%, 60ch);
     line-height: clamp(1rem, 1rem + 1.5vw ,2rem);
-    font-size: clamp(0.75rem, 0.25rem + 1vw, 1.2rem);
-    font-weight: 700;
     margin-bottom: 3rem;
 }   
 
 h1 {
-    font-size: clamp(1.15rem, 1rem + 1.5vw, 2.5rem);
+    font-size: clamp(1.25rem, 1rem + 1.5vw, 2.5rem);
     font-weight: 700;
     margin-bottom: 2rem;
+    text-align: center;
+    color: var(--txt-primary-700);
+}
+
+h2 {
+    font-size: clamp(1rem, 0.25rem + 1vw, 1.3rem);
+    font-weight: 600;
+    filter: opacity(0.6);
+}
+
+#earthly {
+    font-style: italic;
+    position:static;
+}
+
+#form-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 }
 
 #signup {
     display: flex;
+    flex: 0;
     flex-flow: row wrap;
     gap: 2rem;
     justify-content: center;
-    margin: 2rem;
-    width: fit-content;
+    align-items: center;
+    height: 90%;
+
 }
 
 #fields {
     display: flex;
     flex-flow: row wrap;
     gap: 2rem;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     border: none;
 }
@@ -78,21 +164,107 @@ label {
     display: flex;
     flex-flow: column nowrap;
     width: clamp(200px, 40%, 400px);
+    position: relative;
+    margin-top: 1.5rem;
 }
 
 input {
     height: 2rem;
     font-size: clamp(1rem, 0.5rem + 1vw, 1.5rem);
+    border: none;
+    transition: all 0.2s;
+    background-color: transparent;
+    border-bottom: 0.1rem solid var(--bg-dark-alpha-500);
+}
+
+input:focus {
+    outline: none;
+    border-bottom: 0.3rem solid var(--secondary);
+}
+
+input::placeholder {
+    color: transparent;
 }
 
 span {
-    font-size: clamp(1rem, 0.5rem + 1vw, 1.5rem);
-    position: relative;
-    left: 0.5rem;
+    font-size: clamp(1rem, 0.5rem + 1vw, 1.3rem);
+    position: absolute;
+    top: 0;
     font-weight: 700;
+    transition: all 0.3s;   
+    color: var(--txt-primary-700);
+    letter-spacing: 0.1ch;
 }
 
+label:focus-within span,
+input:not(:placeholder-shown) + span{
+    top: -1.5rem;
+    font-size: clamp(0.85rem, 0.4rem + 0.85vw, 1.15rem);
+}
+
+input:not(:placeholder-shown) + span {
+    color: var(--txt-primary-500);
+}
+
+input:focus + span {
+    color: var(--txt-secondary-700);
+    transition: all 0.3s;
+}   
+
 #submit {
-    height: 2rem;
+    height: 2.5rem;
     width: clamp(20ch, 40%, 30ch);
+    border: none;
+    background: var(--secondary);
+    font-size: clamp(1.15rem, 0.5rem + 1vw, 1.3rem);
+    font-weight: 700;
+    letter-spacing: 0.15ch;
+    color: var(--txt-primary-500);
+    transition: all 0.3s;
+    border-radius: 0.5rem;
+}
+
+#submit:hover {
+    color: var(--txt-primary-700);
+    filter: brightness(110%);
+    box-shadow: 2px 2px 2px var(--shadow-dark-100),
+                -2px -2px 2px var(--shadow-light-100);
+}
+
+#login-container {
+    width: 90%;
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 2rem;
+    font-size: clamp(1rem, 0.25rem + 1vw, 1.3rem);
+    font-weight: 500;
+}
+
+a {
+    position: relative;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#login {
+    width: max-content;
+    color: var(--txt-secondary-700);
+    margin-left: 1ch;
+}
+
+#login::after {
+    content: "";
+    display: block;
+    left: 50%;
+    width: 0;
+    height: 0.15rem;
+    background-color: var(--txt-secondary-700);
+    position: relative;
+    bottom: -0.5rem;
+    transition: all 0.4s;
+}
+
+#login:hover::after {
+    left: 0;
+    width: 100%;
 }
