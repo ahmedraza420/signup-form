@@ -34,7 +34,7 @@
     /* min-width: 350px; */
     min-height: 100dvh;
     background-color: var(--secondary);
-    background-image: url(./photos/_2cc343b8-37f6-49b8-a54b-d4132dae6817.jpeg);
+    background-image: url(./photos/2cc343b8-37f6-49b8-a54b-d4132dae6817.jpeg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -346,3 +346,4 @@ svg {
         opacity: 0%;
     }
 }
+
