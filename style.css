@@ -11,13 +11,14 @@
     --white-bg-alpha-100: rgb(255 255 255 / 0.1);
     --white-bg-alpha-500: rgb(255 255 255 / 0.3);
     --bg-dark-alpha-100: rgb(0 0 0 / 0.1);
-    --bg-dark-alpha-500: rgb(0 0 0 / 0.3);
+    --bg-dark-alpha-500: rgb(0 0 0 / 0.4);
     --shadow-dark-100: rgb(0 0 0 / 0.05);
     --shadow-light-100: rgb(255 255 255 / 0.05);
     --txt-primary-500: #2a393e;
     --txt-primary-700: #132429;
     --txt-secondary-500: #d9b493;
     --txt-secondary-700: #ffd9b7;
+    --github-white: #e6edf3;
 }
 
 #main {
@@ -30,7 +31,7 @@
 #left {
     width: 40%;
     flex: 0 0 auto;
-    min-width: 350px;
+    /* min-width: 350px; */
     min-height: 100dvh;
     background-color: var(--secondary);
     background-image: url(./photos/_2cc343b8-37f6-49b8-a54b-d4132dae6817.jpeg);
@@ -48,7 +49,7 @@
 #organization {
     position: absolute;
     width: 100%;
-    min-width: inherit;
+    /* min-width: inherit; */
     height: 8rem;
     background: var(--bg-dark-alpha-500);
     display: flex;
@@ -58,12 +59,19 @@
     font-size: clamp(1.5rem, 1rem + 2vw, 3rem);
     font-weight: bold;
     color: white;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
+}
+
+#org-logo {
+    height: clamp(10rem, 1rem + 2vw, 5rem);
+    width: clamp(10rem, 1rem + 2vw, 5rem);
+    filter: drop-shadow(0 0 1rem var(--secondary));
 }
 
 #source {
-    position: fixed;
-    bottom: 0.5rem;
+    margin-top: auto;
+    /* bottom: -0.5rem; */
+    margin-bottom: 2%;
     font-size: clamp(0.75rem, 0.25rem + 1vw, 1.2rem);
     font-weight: 500;
     letter-spacing: 0.15ch;
@@ -105,20 +113,20 @@
                 -1rem -1rem 1rem var(--shadow-light-100);
     border-radius: 1rem;    
     backdrop-filter: blur(1rem);
-    padding: 2rem;
+    padding: 2vh;
 }
 
 #org-info {
-    margin-top: 2rem;
-    width: clamp(40ch, 80%, 60ch);
+    margin-top: 2vh;
+    width: clamp(40ch, 80%, 65ch);
     line-height: clamp(1rem, 1rem + 1.5vw ,2rem);
-    margin-bottom: 3rem;
+    margin-bottom: 5vh;
 }   
 
 h1 {
     font-size: clamp(1.25rem, 1rem + 1.5vw, 2.5rem);
     font-weight: 700;
-    margin-bottom: 2rem;
+    margin-bottom: 2vh;
     text-align: center;
     color: var(--txt-primary-700);
 }
@@ -138,13 +146,14 @@ h2 {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    padding: 2rem;
 }
 
 #signup {
     display: flex;
     flex: 0;
     flex-flow: row wrap;
-    gap: 2rem;
+    gap: 6vh;
     justify-content: center;
     align-items: center;
     height: 90%;
@@ -154,7 +163,7 @@ h2 {
 #fields {
     display: flex;
     flex-flow: row wrap;
-    gap: 2rem;
+    gap: 2vh;
     justify-content: space-evenly;
     align-items: center;
     border: none;
@@ -180,13 +189,14 @@ input {
 input:focus {
     outline: none;
     border-bottom: 0.3rem solid var(--secondary);
+    box-shadow: 0 5px 5px var(--shadow-dark-100);
 }
 
 input::placeholder {
     color: transparent;
 }
 
-span {
+.label {
     font-size: clamp(1rem, 0.5rem + 1vw, 1.3rem);
     position: absolute;
     top: 0;
@@ -194,25 +204,27 @@ span {
     transition: all 0.3s;   
     color: var(--txt-primary-700);
     letter-spacing: 0.1ch;
+    pointer-events: none;
+    /* z-index: -1; */
 }
 
-label:focus-within span,
-input:not(:placeholder-shown) + span{
+label:focus-within .label,
+input:not(:placeholder-shown) + .label{
     top: -1.5rem;
     font-size: clamp(0.85rem, 0.4rem + 0.85vw, 1.15rem);
 }
 
-input:not(:placeholder-shown) + span {
+input:not(:placeholder-shown) + .label {
     color: var(--txt-primary-500);
 }
 
-input:focus + span {
+input:focus + .label {
     color: var(--txt-secondary-700);
     transition: all 0.3s;
 }   
 
 #submit {
-    height: 2.5rem;
+    height: 3rem;
     width: clamp(20ch, 40%, 30ch);
     border: none;
     background: var(--secondary);
@@ -227,8 +239,13 @@ input:focus + span {
 #submit:hover {
     color: var(--txt-primary-700);
     filter: brightness(110%);
-    box-shadow: 2px 2px 2px var(--shadow-dark-100),
-                -2px -2px 2px var(--shadow-light-100);
+    box-shadow: 8px 8px 8px var(--shadow-dark-100),
+                -4px -4px 4px var(--shadow-light-100);
+}
+
+#submit:active {
+    filter: brightness(90%);
+    box-shadow: none;
 }
 
 #login-container {
@@ -247,6 +264,7 @@ a {
 }
 
 #login {
+    display: inline-block;
     width: max-content;
     color: var(--txt-secondary-700);
     margin-left: 1ch;
@@ -257,7 +275,7 @@ a {
     display: block;
     left: 50%;
     width: 0;
-    height: 0.15rem;
+    height: 0.2rem;
     background-color: var(--txt-secondary-700);
     position: relative;
     bottom: -0.5rem;
@@ -267,4 +285,64 @@ a {
 #login:hover::after {
     left: 0;
     width: 100%;
+}
+
+#copyright {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+}
+
+#github-link {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+svg {
+    height: 3rem;
+    width: 3rem;
+    transition: all 0.3s;
+    fill: var(--github-white);
+}
+
+#myname {
+    text-decoration: none;
+    color: var(--github-white);
+    /* color: transparent;  */
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+#copyright:hover svg {
+    height: 4rem;
+    width: 4rem;
+    filter: drop-shadow(0 0 0.5rem var(--shadow-light-100));
+}
+
+#copyright:hover #myname {
+    animation: showname 0.3s forwards;
+    
+}
+#copyright:not(:hover) #myname {
+    animation: hidename 0.3s forwards;
+}
+
+@keyframes showname {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
+@keyframes hidename {
+    0% {
+        opacity: 100;
+    }
+    100% {
+        opacity: 0%;
+    }
 }
