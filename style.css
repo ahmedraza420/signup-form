@@ -11,14 +11,41 @@
     --white-bg-alpha-100: rgb(255 255 255 / 0.1);
     --white-bg-alpha-500: rgb(255 255 255 / 0.3);
     --bg-dark-alpha-100: rgb(0 0 0 / 0.1);
+    --bg-dark-alpha-300: rgb(0 0 0 / 20%);
     --bg-dark-alpha-500: rgb(0 0 0 / 0.4);
     --shadow-dark-100: rgb(0 0 0 / 0.05);
     --shadow-light-100: rgb(255 255 255 / 0.05);
+    --txt-primary-300: #374c53;
     --txt-primary-500: #2a393e;
     --txt-primary-700: #132429;
     --txt-secondary-500: #d9b493;
     --txt-secondary-700: #ffd9b7;
+    --txt-secondary-1000: #ffdfc2;
     --github-white: #e6edf3;
+    --br-c-1: #d4ac32;
+    --br-c-2: #74b03b;
+    --br-c-3: #425ae2;
+    --br-c-4: #106883;
+    --txt-invalid: #ff8181;
+    --txt-invalid-2: #ff5c5c;
+    --txt-invalid-3: #664924;
+    --border-invalid: #b13939;
+    --txt-valid: #33ffbb;
+    --txt-valid-2: #fcf6de;
+    --border-valid: #33ffbb;
+    --input-bg: #5b666a;
+    --input-focus-bg: #657379;
+}
+
+@property --br-deg {
+    syntax: "<angle>";  
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes rotation {
+    0% {--br-deg: 0deg;}
+    100% {--br-deg: 360deg;}
 }
 
 #main {
@@ -49,17 +76,17 @@
 #organization {
     position: absolute;
     width: 100%;
-    /* min-width: inherit; */
     height: 8rem;
     background: var(--bg-dark-alpha-500);
     display: flex;
     justify-content: center;
     align-items: center;
     top: 10rem;
-    font-size: clamp(1.5rem, 1rem + 2vw, 3rem);
+    font-size: clamp(1.5rem, 1rem + 2vw, 3.5rem);
     font-weight: bold;
     color: white;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(5px);
+    text-shadow: 0 0 1rem black;
 }
 
 #org-logo {
@@ -113,14 +140,14 @@
                 -1rem -1rem 1rem var(--shadow-light-100);
     border-radius: 1rem;    
     backdrop-filter: blur(1rem);
-    padding: 2vh;
+    padding: 2vh 2vw;
 }
 
 #org-info {
     margin-top: 2vh;
     width: clamp(40ch, 80%, 65ch);
     line-height: clamp(1rem, 1rem + 1.5vw ,2rem);
-    margin-bottom: 5vh;
+    margin-bottom: 3vh;
 }   
 
 h1 {
@@ -146,7 +173,7 @@ h2 {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    padding: 2rem;
+    /* padding: 2rem; */
 }
 
 #signup {
@@ -163,7 +190,7 @@ h2 {
 #fields {
     display: flex;
     flex-flow: row wrap;
-    gap: 2vh;
+    gap: 2vh 3vw;
     justify-content: space-evenly;
     align-items: center;
     border: none;
@@ -172,19 +199,33 @@ h2 {
 label {
     display: flex;
     flex-flow: column nowrap;
-    width: clamp(200px, 40%, 400px);
+    /* width: clamp(300px, 45%, 500px); */
+    min-width: 300px;
+    max-width: 80%;
+    flex: 1 0 45%;
     position: relative;
     margin-top: 1.5rem;
 }
 
 input {
     height: 2rem;
-    font-size: clamp(1rem, 0.5rem + 1vw, 1.5rem);
+    font-size: clamp(1rem, 0.6rem + 1vw, 1.5rem);
     border: none;
     transition: all 0.2s;
     background-color: transparent;
-    border-bottom: 0.1rem solid var(--bg-dark-alpha-500);
+    border-bottom: 0.15rem solid var(--bg-dark-alpha-500);
+    display:inline-block;
+    font-weight: 500;
 }
+
+input:-internal-autofill-selected {
+    filter: brightness(0.75);
+}
+
+input:-internal-autofill-selected:focus {
+    filter: brightness(1);
+}
+
 
 input:focus {
     outline: none;
@@ -200,6 +241,8 @@ input::placeholder {
     font-size: clamp(1rem, 0.5rem + 1vw, 1.3rem);
     position: absolute;
     top: 0;
+    display: flex;
+    flex-flow: column nowrap;
     font-weight: 700;
     transition: all 0.3s;   
     color: var(--txt-primary-700);
@@ -209,19 +252,56 @@ input::placeholder {
 }
 
 label:focus-within .label,
-input:not(:placeholder-shown) + .label{
+input:not(:placeholder-shown) ~ .label{
     top: -1.5rem;
     font-size: clamp(0.85rem, 0.4rem + 0.85vw, 1.15rem);
 }
 
-input:not(:placeholder-shown) + .label {
+input:not(:placeholder-shown) ~ .label {
     color: var(--txt-primary-500);
 }
 
-input:focus + .label {
+input:focus ~ .label {
     color: var(--txt-secondary-700);
     transition: all 0.3s;
 }   
+
+.invalid{
+    color: var(--txt-invalid);
+    border-color: var(--border-invalid);
+    background-color: var(--bg-dark-alpha-300);
+}
+
+/* .invalid:focus {
+   color: var(--txt-invalid);
+   text-shadow: 0 0 0.1rem black;
+} */
+
+.valid {
+    color: var(--txt-valid-2 );
+}
+.valid:focus, .invalid:focus {
+    color: var(--github-white);
+}
+
+.info::after {
+    content: "❌ " attr(info-text);
+    opacity: 0;
+    transition: all 0.3s;
+    display: block;
+    height: 2.5rem;
+    color: white;
+    /* filter: drop-shadow(0 0 0.05rem #f93232); */
+    font-size: clamp(0.75rem, 0.3rem + 0.8vw, 1rem);
+    /* font-weight: 500; */
+    position: relative;
+    text-wrap: nowrap;
+    top: 0.25rem;
+}
+
+.invalid ~ .info::after {
+    opacity: 1;
+}
 
 #submit {
     height: 3rem;
@@ -234,17 +314,53 @@ input:focus + .label {
     color: var(--txt-primary-500);
     transition: all 0.3s;
     border-radius: 0.5rem;
+    position: relative;
 }
+
+.border-anim::before {
+    content: "";
+    opacity: 0;
+    transition: opacity 0.3s;   
+}
+
+/* .border-anim:hover::before {
+    content: "";
+    opacity: 100%;
+    transition: opacity 0.3s;
+    inset: -0.3rem;
+    position: absolute;
+    border-radius: inherit;
+    z-index: -2;
+    filter: blur(0.2rem);
+    background: conic-gradient(from var(--br-deg),
+        var(--br-c-1),
+        var(--br-c-2),
+        var(--br-c-3),
+        var(--br-c-4),
+        var(--br-c-3),
+        var(--br-c-2),
+        var(--br-c-1)
+        );
+    animation: rotation 5s linear infinite;
+}
+
+.border-anim:active::before {
+    inset: -0.2rem;
+    filter: blur(0.1rem);
+} */
 
 #submit:hover {
     color: var(--txt-primary-700);
-    filter: brightness(110%);
+    background: var(--txt-secondary-1000);
+    /* filter: brightness(110%); */
     box-shadow: 8px 8px 8px var(--shadow-dark-100),
                 -4px -4px 4px var(--shadow-light-100);
+    /* position: relative; */
 }
 
 #submit:active {
-    filter: brightness(90%);
+    /* filter: brightness(90%); */
+    background: var(--txt-secondary-500);
     box-shadow: none;
 }
 

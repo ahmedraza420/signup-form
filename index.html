@@ -23,31 +23,37 @@
                     <form action="#" id="signup">
                         <fieldset id="fields">
                             <label id="">
-                                <input type="text" id="firstname" name="fname" placeholder="First Name" required aria-required="true">
+                                <input type="text" id="firstname" class="valid" name="fname" placeholder="First Name" minlength="3" maxlength="40" required aria-required="true">
+                                <span class="info" info-text="At least 3 characters long e.g., John"></span>
                                 <span class="label">First Name</span>
                             </label>
                             <label id="">
-                                <input type="text" id="lastname" name="lname" placeholder="Last Name" required aria-required="true">
+                                <input type="text" id="lastname" class="valid" name="lname" placeholder="Last Name" minlength="3" maxlength="40" required aria-required="true">
+                                <span class="info" info-text="At least 3 characters long e.g., Doe"></span>
                                 <span class="label">Last Name</span>
                             </label>
                             <label id="">
-                                <input type="email" id="email" name="email" placeholder="Email" required aria-required="true">
+                                <input type="email" id="email" class="valid" name="email" placeholder="Email" minlength="6" maxlength="50" required aria-required="true">
+                                <span class="info" info-text="e.g., example@domain.com"></span>
                                 <span class="label">Email</span>
                             </label>
                             <label id="">
-                                <input type="tel" id="phone" name="phone" placeholder="Phone" required aria-required="true">
+                                <input type="tel" id="phone" class="valid" name="phone" placeholder="Phone" minlength="5" maxlength="20" pattern="^\+?[0-9]+(?:-[0-9]+)*$" info="" required aria-required="true">
+                                <span class="info" info-text="e.g., +123-456 or 123456"></span>
                                 <span class="label">Phone</span>
                             </label>
                             <label id="">
-                                <input type="password" id="password" name="pass" placeholder="Password" required aria-required="true">
+                                <input type="password" id="password" class='valid' name="pass" placeholder="Password" minlength="8" pattern="^(?=.*\d)(?=.*[!@#$%^&*,.\/?;:'\\\|\(\)\-_+=\[\]\{\}`~])(?=.*[a-z])(?=.*[A-Z]).{8,}$" required aria-required="true">
+                                <span class="info" info-text="Should contain atleast 8 characters"></span>
                                 <span class="label">Password</span>
                             </label>
                             <label id="">
-                                <input type="password" id="confirm" name="passconfirm" placeholder="" required aria-required="true">
+                                <input type="password" id="confirm" class="valid" name="passconfirm" placeholder="Confirm Password" required aria-required="true">
+                                <span class="info" info-text="The passwords must match"></span>
                                 <span class="label">Confirm Password</span>
                             </label>
                         </fieldset>
-                        <button type="submit" id="submit">Create Account</button>
+                        <button type="submit" id="submit" class="border-anim">Create Account</button>
                     </form>
                     <div id="login-container"><p>Already a member?  <a href="#"><span id="login">Log in</span></a></p></div>
                 </div>
