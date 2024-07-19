@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,6 +10,7 @@
 
 :root {
     --primary: #1a2d33;
+    --primary-alpha-500: #1a2d3384;
     --secondary: #f3cfaf;
     --white-bg: #fafafa;
     --white-bg-alpha-100: rgb(255 255 255 / 0.1);
@@ -35,6 +40,7 @@
     --border-valid: #33ffbb;
     --input-bg: #5b666a;
     --input-focus-bg: #657379;
+    --bg-image: url(./photos/2cc343b8-37f6-49b8-a54b-d4132dae6817.jpeg);
 }
 
 @property --br-deg {
@@ -50,9 +56,9 @@
 
 #main {
     display: flex;
-    flex-flow: row no-wrap;
+    flex-flow: row nowrap;
     width: max(850px, 100%);
-    position: absolute;
+    /* position: absolute; */
 }
 
 #left {
@@ -60,8 +66,8 @@
     flex: 0 0 auto;
     /* min-width: 350px; */
     min-height: 100dvh;
-    background-color: var(--secondary);
-    background-image: url(./photos/2cc343b8-37f6-49b8-a54b-d4132dae6817.jpeg);
+        background-color: var(--secondary);
+        background-image: url(./photos/2cc343b8-37f6-49b8-a54b-d4132dae6817.jpeg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -89,10 +95,34 @@
     text-shadow: 0 0 1rem black;
 }
 
+#organization-main {
+    position:fixed;
+    top:0px;
+    left:0px;
+    width: 100%;
+    height: 8rem;
+    background: var(--primary-alpha-500);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(1.5rem, 1rem + 2vw, 3.5rem);
+    font-weight: bold;
+    color: white;
+    backdrop-filter: blur(2rem);
+    text-shadow: 0 0 1rem black;
+    z-index: 1;
+    display: none;
+}
+
 #org-logo {
     height: clamp(10rem, 1rem + 2vw, 5rem);
     width: clamp(10rem, 1rem + 2vw, 5rem);
     filter: drop-shadow(0 0 1rem var(--secondary));
+    transform: translate(calc(-1rem - 2vw), 0px);
+}
+
+#org-name {
+    transform: translate(calc(-1rem - 2vw), 0px);
 }
 
 #source {
@@ -139,7 +169,7 @@
     box-shadow: 1rem 1rem 1rem var(--shadow-dark-100),  
                 -1rem -1rem 1rem var(--shadow-light-100);
     border-radius: 1rem;    
-    backdrop-filter: blur(1rem);
+    backdrop-filter: blur(2rem);
     padding: 2vh 2vw;
 }
 
@@ -208,7 +238,7 @@ label {
 }
 
 input {
-    height: 2rem;
+    height: 2.5rem;
     font-size: clamp(1rem, 0.6rem + 1vw, 1.5rem);
     border: none;
     transition: all 0.2s;
@@ -216,6 +246,8 @@ input {
     border-bottom: 0.15rem solid var(--bg-dark-alpha-500);
     display:inline-block;
     font-weight: 500;
+    outline: none;
+
 }
 
 input:-internal-autofill-selected {
@@ -227,7 +259,7 @@ input:-internal-autofill-selected:focus {
 }
 
 
-input:focus {
+input:focus, input:focus-visible {
     outline: none;
     border-bottom: 0.3rem solid var(--secondary);
     box-shadow: 0 5px 5px var(--shadow-dark-100);
@@ -240,7 +272,7 @@ input::placeholder {
 .label {
     font-size: clamp(1rem, 0.5rem + 1vw, 1.3rem);
     position: absolute;
-    top: 0;
+    top: 0.5rem;
     display: flex;
     flex-flow: column nowrap;
     font-weight: 700;
@@ -289,7 +321,7 @@ input:focus ~ .label {
     opacity: 0;
     transition: all 0.3s;
     display: block;
-    height: 2.5rem;
+    height: 2rem;
     color: white;
     /* filter: drop-shadow(0 0 0.05rem #f93232); */
     font-size: clamp(0.75rem, 0.3rem + 0.8vw, 1rem);
@@ -463,3 +495,82 @@ svg {
     }
 }
 
+
+@media only screen and (max-width: 850px) {
+    body {
+        min-height: 100dvh;
+        width: max(100dvw, 300px);
+        overflow: auto hidden;
+        background-color: var(--secondary);
+        background-image: var(--bg-image);
+        background-repeat: no-repeat;
+        background-position: center top 5rem;
+        background-size: contain;
+        background-attachment: fixed;
+    }
+    #main {
+        flex-flow: column nowrap;
+        width: max(300px, 100dvw);
+        height: 100dvh;
+        display: flex;
+        /* position: absolute; */
+        overflow: auto hidden;
+
+    }
+    #left {
+        display: none;
+    }
+
+    #organization {
+        display: none;
+    }
+
+    #organization-main {
+        display: flex;
+    }
+
+    #right {
+        position: relative;
+        background: var(--bg-dark-alpha-100);
+        min-height: calc(100dvh - 8rem);     
+        width: inherit;
+        top: 7rem;
+        margin: 1rem 0 8rem 0;
+        padding-bottom: 2rem;
+        overflow: auto;
+        display: flex;
+        flex-flow: column nowrap;
+    }
+    
+    #form-body {
+        min-width: fit-content;
+        background-color: var(--bg-dark-alpha-300);
+        position: relative;
+        top: 12rem;
+    }
+
+    h2 {
+        min-width: 40ch;
+    }
+
+    #signup {
+        gap: 3vh;
+    }
+
+    label {
+        min-width: 200px;
+        flex-basis: 50%;
+    }
+
+    #login-container {
+        margin-top: 3rem;
+    }
+    #copyright {
+        transform: scale(70%);
+        position: relative;
+        right: 0;
+        bottom: 0;
+        top: 11rem;
+    }
+
+}
