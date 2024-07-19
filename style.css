@@ -571,6 +571,20 @@ svg {
         flex-basis: 50%;
     }
 
+    input {
+        background-color: var(--bg-dark-alpha-300);
+        border-radius: 0.25rem;
+        padding: 0 0.5rem;
+    }
+
+    .label {
+        margin-left: 0.5rem; 
+    }
+
+    input:focus ~ .label {
+        margin-left: 0;
+    }
+
     #login-container {
         margin-top: 3rem;
     }
