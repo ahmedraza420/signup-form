@@ -240,9 +240,10 @@ label {
     /* width: clamp(300px, 45%, 500px); */
     min-width: 300px;
     max-width: 80%;
-    flex: 1 0 45%;
+    flex: 1 0 40%;
     position: relative;
-    margin-top: 1.5rem;
+    margin-top: calc(1.5rem + 1vw);
+    margin-left: 1.25rem;
 }
 
 input {
@@ -324,22 +325,39 @@ input:focus ~ .label {
     color: var(--github-white);
 }
 
+.info {
+    display: flex;
+}
+
+.info::before {
+    position:relative;
+    content: "❌ ";
+    top: 0.25rem;
+    opacity: 0;
+    left: -1.25rem;    
+    transition: all 0.3s;
+    height: inherit;
+    display: flex;
+    align-items: center;
+}
+
 .info::after {
-    content: "❌ " attr(info-text);
+    content: attr(info-text);
     opacity: 0;
     transition: all 0.3s;
     display: block;
-    height: 2rem;
+    max-height: 2rem;
     color: white;
     /* filter: drop-shadow(0 0 0.05rem #f93232); */
     font-size: var(--fz-a-7);
     /* font-weight: 500; */
     position: relative;
-    text-wrap: nowrap;
+    /* text-wrap: nowrap; */
     top: 0.25rem;
+    left: -1rem;
 }
 
-.invalid ~ .info::after {
+.invalid ~ .info::after, .invalid ~ .info::before {
     opacity: 1;
 }
 
@@ -579,10 +597,16 @@ svg {
 
     .label {
         margin-left: 0.5rem; 
+        color: var(--github-white);
     }
 
     input:focus ~ .label {
         margin-left: 0;
+    }
+    
+    input:not(:placeholder-shown, :focus) ~ .label {
+        margin-left: 0;
+        text-shadow: 0 0 0.15rem var(--txt-secondary-1000);
     }
 
     #login-container {
@@ -616,7 +640,7 @@ svg {
         --fz-a-5: clamp(0.65rem, 0.6rem + 1vw, 1rem);
         --fz-a-6: clamp(0.5rem, 0.35rem + 1vw, 1rem);
         --fz-a-7: clamp(0.6rem, 0.4rem + 0.85vw, 0.85rem); */
-        font-size: 10px;
+        font-size: 14px;
     }
 
 
@@ -630,11 +654,11 @@ svg {
     }
 
     #org-info {
-        width: clamp(25ch, 81%, 60ch);
+        width: clamp(25ch, 80%, 60ch);
     }
 
     #form-body {
-        top: 8rem;
+        top: 13rem;
     }
 
     label {
@@ -647,7 +671,7 @@ svg {
     }
 
     #copyright {
-        top: 7rem;
+        top: 12rem;
         padding-bottom: 2rem;
     }
 }
