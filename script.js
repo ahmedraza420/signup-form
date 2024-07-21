@@ -1,7 +1,9 @@
 let inputs = document.querySelectorAll("input");
 let passTip = document.querySelector('#tip');
+let passwordInput = document.querySelector('#password');
+let confirmInput = document.querySelector('#confirm');
 
-const specialChars = "!@#$%^&*,./?;:'\|()-_+=[]{}`~";
+const specialChars = "!@#$%^&*,./?;:'\|()-_+=[]{}`~ ";
 let containsSpecialChar = false;
 
 let tipHeading = document.createElement('h3');
@@ -35,7 +37,6 @@ passTip.appendChild(tipLower);
 passTip.appendChild(tipSpecial);
 passTip.appendChild(tipNumeric);
 
-
 inputs.forEach(input => {
     input.addEventListener('blur', e => {
         if(!input.checkValidity() && input.value !== '' && input.getAttribute('id'))
@@ -48,12 +49,6 @@ inputs.forEach(input => {
         {
             swapClasses(input, 'invalid', 'valid');
         }
-        if(input.getAttribute('id') == 'confirm'){
-            if(!input.checkValidity())
-            {
-                swapClasses(input, 'valid', 'invalid');
-            }
-        }
         if(input.getAttribute('id') == 'password'){
             if(input.checkValidity()) {
                 swapClasses(passTip, 'wrong', 'right');
@@ -65,22 +60,22 @@ inputs.forEach(input => {
                 tipHeading.innerText = 'The password must contain:';
             }
             validatePassword(input);
+            comparePasswords(passwordInput, confirmInput)
+        }
+        if(input.getAttribute('id') =='confirm') {
+            comparePasswords(passwordInput, confirmInput); 
         }
     });
 });
 
-
 function validatePassword(input) {
-    // console.log('validating...');
     let inputText = input.value;
-    // console.log(inputText);
     inputText.length >= 8 ? swapClasses(tipMinLen, 'wrong', 'right') : swapClasses(tipMinLen, 'right', 'wrong');
     
     inputText !== inputText.toLowerCase() ? swapClasses(tipUpper, 'wrong', 'right') : swapClasses(tipUpper, 'right', 'wrong');
 
     inputText !== inputText.toUpperCase() ? swapClasses(tipLower, 'wrong', 'right') : swapClasses(tipLower, 'right', 'wrong');
 
-    // console.log(inputText, inputText.toLowerCase(), inputText.toUpperCase());
     containsSpecialChar = false;
     Array.from(inputText).forEach(char => {
         if(specialChars.includes(char) || containsSpecialChar == true) {
@@ -91,23 +86,14 @@ function validatePassword(input) {
         }
     });
     containsSpecialChar ? swapClasses(tipSpecial, 'wrong', 'right') : swapClasses(tipSpecial, 'right', 'wrong');
-    
-    inputText.split("").some(char => !isNaN(char)) ? swapClasses(tipNumeric, 'wrong', 'right') : swapClasses(tipNumeric, 'right', 'wrong');
-
-    // if (inputText == '') {
-    //     swapClasses(, 'right', 'wrong');
-        
-    //     swapClasses(, 'right', 'wrong');
-        
-    //     swapClasses(, 'right', 'wrong');
-        
-    //     swapClasses(, 'right', 'wrong');
-        
-    //     swapClasses(, 'right', 'wrong');
-    // }
+    inputText.split("").some(char => !isNaN(char) && char !== ' ') ? swapClasses(tipNumeric, 'wrong', 'right') : swapClasses(tipNumeric, 'right', 'wrong');
 }
 
 function swapClasses(element, class1, class2) { 
         element.classList.remove(class1);
         element.classList.add(class2);
+}
+
+function comparePasswords(passwordField, confirmField) {
+    passwordField.value === confirmField.value ? swapClasses(confirmField, 'invalid', 'valid') : swapClasses(confirmField, 'valid', 'invalid');
 }

@@ -365,6 +365,17 @@ input:focus ~ .label {
     opacity: 1;
 }
 
+input#confirm.valid:not(:placeholder-shown) ~ .info::before {
+    content: "✅ ";
+    opacity: 1;
+}
+
+input#confirm.valid:not(:placeholder-shown) ~ .info::after {
+    content: attr(info-text-success);
+    opacity: 1; 
+}
+
+
 #passwordtip {
     position: relative;
     display: inline-block;
