@@ -49,6 +49,7 @@ html {
     --fz-a-5: clamp(1rem, 0.6rem + 1vw, 1.5rem);
     --fz-a-6: clamp(1rem, 0.5rem + 1vw, 1.3rem);
     --fz-a-7: clamp(0.85rem, 0.4rem + 0.85vw, 1.15rem);
+    --fz-a-8: clamp(0.75rem, 0.25rem + 1vw, 1rem);
 }
 
 @property --br-deg {
@@ -256,7 +257,7 @@ input {
     display:inline-block;
     font-weight: 500;
     outline: none;
-
+    padding: 0 0.5rem;
 }
 
 input:-internal-autofill-selected {
@@ -289,6 +290,8 @@ input::placeholder {
     color: var(--txt-primary-700);
     letter-spacing: 0.1ch;
     pointer-events: none;
+    
+    margin-left: 0.5rem; 
     /* z-index: -1; */
 }
 
@@ -296,6 +299,7 @@ label:focus-within .label,
 input:not(:placeholder-shown) ~ .label{
     top: -1.5rem;
     font-size: clamp(0.85rem, 0.4rem + 0.85vw, 1.15rem);
+    margin-left: 0;
 }
 
 input:not(:placeholder-shown) ~ .label {
@@ -359,6 +363,94 @@ input:focus ~ .label {
 
 .invalid ~ .info::after, .invalid ~ .info::before {
     opacity: 1;
+}
+
+#passwordtip {
+    position: relative;
+    display: inline-block;
+    width: 90%;
+}
+
+#tip {
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    background-color: #333333ee;
+    /* background-color: var(--secondary); */
+    border-left: 0.3rem solid var(--txt-invalid);
+    color: #fff;
+    /* text-align: center; */
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    z-index: 3;
+    top: 0.5rem;
+    left: 50%;
+    margin-left: -50%;
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.5rem;
+}
+
+#password:focus ~ #passwordtip > #tip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* #tip::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    margin-top: 1rem;
+    left: 50%;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #333333cc transparent transparent transparent;
+    border-color: transparent transparent var(--secondary) transparent;
+  } */
+
+#tip.wrong {
+    border-color: var(--txt-invalid);
+}
+
+#tip.right {
+    border-color: var(--txt-valid);
+}
+
+#tip h3 {
+    font-size: var(--fz-a-4);
+}
+
+#tip p {
+    font-size: var(--fz-a-8);
+}
+
+#tip p.wrong {
+    display: block;
+    transition: all 0.3s;
+    opacity: 1;
+}
+
+#tip p.right {
+    display: none;
+    /* visibility: hidden; */
+    transition: all 0.3s;
+    opacity: 0;
+}   
+
+#tip p::before {
+    content: "•";
+    margin-right: 0.5rem;
+}
+
+#tip p.wrong::before {
+    color: var(--txt-invalid-2);
+}
+
+#tip p.right::before {
+    color: var(--txt-valid);
 }
 
 #submit {
@@ -592,11 +684,10 @@ svg {
     input {
         background-color: var(--bg-dark-alpha-300);
         border-radius: 0.25rem;
-        padding: 0 0.5rem;
     }
 
     .label {
-        margin-left: 0.5rem; 
+        /* margin-left: 0.5rem;  */
         color: var(--github-white);
     }
 
