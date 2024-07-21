@@ -68,13 +68,11 @@ html {
     display: flex;
     flex-flow: row nowrap;
     width: max(850px, 100%);
-    /* position: absolute; */
 }
 
 #left {
     width: 40%;
     flex: 0 0 auto;
-    /* min-width: 350px; */
     min-height: 100dvh;
         background-color: var(--secondary);
         background-image: url(./photos/2cc343b8-37f6-49b8-a54b-d4132dae6817.jpeg);
@@ -84,7 +82,6 @@ html {
     background-attachment:local;
     display: flex;
     justify-content: center;
-    /* position: fixed; */
     overflow-x: hidden;
 }
 
@@ -137,7 +134,6 @@ html {
 
 #source {
     margin-top: auto;
-    /* bottom: -0.5rem; */
     margin-bottom: 2%;
     font-size: var(--fz-a-2);
     font-weight: 500;
@@ -213,7 +209,6 @@ h2 {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    /* padding: 2rem; */
 }
 
 #signup {
@@ -239,7 +234,6 @@ h2 {
 label {
     display: flex;
     flex-flow: column nowrap;
-    /* width: clamp(300px, 45%, 500px); */
     min-width: 16.5rem;
     max-width: 70%;
     flex: 1 0 0;
@@ -291,10 +285,7 @@ input::placeholder {
     color: var(--txt-primary-700);
     letter-spacing: 0.1ch;
     pointer-events: none;
-    
-    margin-left: 0.5rem; 
-    /* z-index: -1; */
-}
+    margin-left: 0.5rem; }
 
 label:focus-within .label,
 input:not(:placeholder-shown) ~ .label{
@@ -315,13 +306,7 @@ input:focus ~ .label {
 .invalid{
     color: var(--txt-invalid);
     border-color: var(--border-invalid);
-    /* background-color: var(--bg-dark-alpha-300); */
 }
-
-/* .invalid:focus {
-   color: var(--txt-invalid);
-   text-shadow: 0 0 0.1rem black;
-} */
 
 .valid {
     color: var(--txt-valid-2 );
@@ -353,11 +338,8 @@ input:focus ~ .label {
     display: block;
     max-height: 2rem;
     color: white;
-    /* filter: drop-shadow(0 0 0.05rem #f93232); */
     font-size: var(--fz-a-);
-    /* font-weight: 500; */
     position: relative;
-    /* text-wrap: nowrap; */
     top: 0.25rem;
     left: -1rem;
 }
@@ -376,7 +358,6 @@ input#confirm.valid:not(:placeholder-shown) ~ .info::after {
     opacity: 1; 
 }
 
-
 #passwordtip {
     position: relative;
     display: inline-block;
@@ -389,10 +370,8 @@ input#confirm.valid:not(:placeholder-shown) ~ .info::after {
     position: absolute;
     width: 100%;
     background-color: #333333ee;
-    /* background-color: var(--secondary); */
     border-left: 0.3rem solid var(--txt-invalid);
     color: #fff;
-    /* text-align: center; */
     border-radius: 0.25rem;
     padding: 0.5rem;
     z-index: 3;
@@ -410,19 +389,6 @@ input#confirm.valid:not(:placeholder-shown) ~ .info::after {
     visibility: visible;
     opacity: 1;
 }
-
-/* #tip::after {
-    content: "";
-    position: absolute;
-    top: -10px;
-    margin-top: 1rem;
-    left: 50%;
-    margin-left: -10px;
-    border-width: 10px;
-    border-style: solid;
-    border-color: #333333cc transparent transparent transparent;
-    border-color: transparent transparent var(--secondary) transparent;
-  } */
 
 #tip.wrong {
     border-color: var(--border-invalid);
@@ -448,7 +414,6 @@ input#confirm.valid:not(:placeholder-shown) ~ .info::after {
 
 #tip p.right {
     display: none;
-    /* visibility: hidden; */
     transition: all 0.3s;
     opacity: 0;
 }   
@@ -515,14 +480,11 @@ input#confirm.valid:not(:placeholder-shown) ~ .info::after {
 #submit:hover {
     color: var(--txt-primary-700);
     background: var(--txt-secondary-1000);
-    /* filter: brightness(110%); */
     box-shadow: 8px 8px 8px var(--shadow-dark-100),
                 -4px -4px 4px var(--shadow-light-100);
-    /* position: relative; */
 }
 
 #submit:active {
-    /* filter: brightness(90%); */
     background: var(--txt-secondary-500);
     box-shadow: none;
 }
@@ -589,7 +551,6 @@ svg {
 #myname {
     text-decoration: none;
     color: var(--github-white);
-    /* color: transparent;  */
     opacity: 0;
     transition: all 0.3s;
 }
@@ -641,11 +602,9 @@ svg {
     }
     #main {
         flex-flow: column nowrap;
-        /* width: max(300px, 100dvw); */
         width: 100%;
         height: 100dvh;
         display: flex;
-        /* position: absolute; */
         overflow: auto hidden;
 
     }
@@ -668,7 +627,6 @@ svg {
         width: inherit;
         top: 8rem;
         margin: 0 0 8rem 0;
-        /* padding-bottom: 2rem;  */
         overflow: auto;
         display: flex;
         flex-flow: column nowrap;
@@ -692,7 +650,6 @@ svg {
     }
 
     label {
-        /* min-width: 200px; */
         flex-basis: 50%;
         max-width: 400px;
         margin-inline: 1.25rem;
@@ -704,7 +661,6 @@ svg {
     }
 
     .label {
-        /* margin-left: 0.5rem;  */
         color: var(--github-white);
     }
 
@@ -725,7 +681,6 @@ svg {
         position: relative;
         right: 0;
         bottom: 0;
-        /* top: 13rem; */
         padding-bottom: 1rem;
         align-self: center;
     }
@@ -734,21 +689,6 @@ svg {
 
 @media only screen and (max-width: 450px){
     :root {
-
-        /* --fz-a-1: clamp(1.5rem, 1rem + 2vw, 3.5rem);
-        --fz-a-2: clamp(0.75rem, 0.25rem + 1vw, 1.2rem);
-        --fz-a-3: clamp(1.25rem, 1rem + 1.5vw, 2.5rem);
-        --fz-a-4: clamp(1rem, 0.25rem + 1vw, 1.3rem);
-        --fz-a-5: clamp(1rem, 0.6rem + 1vw, 1.5rem);
-        --fz-a-6: clamp(1rem, 0.5rem + 1vw, 1.3rem);
-        --fz-a-7: clamp(0.85rem, 0.4rem + 0.85vw, 1.15rem);
-
-        --fz-a-1: clamp(0.75rem, 0.75rem + 2vw, 1.5rem);
-        --fz-a-3: clamp(0.8rem, 0.5rem + 1.5vw, 1.25rem);
-        --fz-a-4: clamp(0.4rem, 0.3rem + 1vw, 1rem);
-        --fz-a-5: clamp(0.65rem, 0.6rem + 1vw, 1rem);
-        --fz-a-6: clamp(0.5rem, 0.35rem + 1vw, 1rem);
-        --fz-a-7: clamp(0.6rem, 0.4rem + 0.85vw, 0.85rem); */
         font-size: 15px;
     }
 
@@ -765,10 +705,6 @@ svg {
     #org-info {
         width: clamp(25ch, 80%, 60ch);
     }
-/* 
-    #form-body {
-        top: 13rem;
-    } */
     
     #fields {
         gap: 2vh;
@@ -776,15 +712,10 @@ svg {
 
     label {
         min-width: 200px;   
-        /* padding: 0 1.5rem; */
     }
 
     h2 {
         padding: 0 10%;
     }
 
-    /* #copyright {
-        top: 12rem;
-        padding-bottom: 2rem;
-    } */
 }

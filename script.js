@@ -2,9 +2,8 @@ let inputs = document.querySelectorAll("input");
 let passTip = document.querySelector('#tip');
 let passwordInput = document.querySelector('#password');
 let confirmInput = document.querySelector('#confirm');
-
-const specialChars = "!@#$%^&*,./?;:'\|()-_+=[]{}`~ ";
 let containsSpecialChar = false;
+const specialChars = "!@#$%^&*,./?;:'\|()-_+=[]{}`~ ";
 
 let tipHeading = document.createElement('h3');
 let tipMinLen = document.createElement('p');
