@@ -60,7 +60,9 @@ inputs.forEach(input => {
                 tipHeading.innerText = 'The password must contain:';
             }
             validatePassword(input);
-            comparePasswords(passwordInput, confirmInput)
+            if (confirmInput.value != ''){
+                comparePasswords(passwordInput, confirmInput)
+            }
         }
         if(input.getAttribute('id') =='confirm') {
             comparePasswords(passwordInput, confirmInput); 

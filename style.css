@@ -664,19 +664,21 @@ svg {
         background: var(--bg-dark-alpha-100);
         min-height: calc(100dvh - 8rem);     
         width: inherit;
-        top: 7rem;
-        margin: 1rem 0 8rem 0;
+        top: 8rem;
+        margin: 0 0 8rem 0;
         /* padding-bottom: 2rem;  */
         overflow: auto;
         display: flex;
         flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
     }
     
     #form-body {
         min-width: fit-content;
         background-color: var(--bg-dark-alpha-300);
         position: relative;
-        top: 18rem;
+        top: 0;
     }
 
     #org-info {
@@ -690,6 +692,8 @@ svg {
     label {
         /* min-width: 200px; */
         flex-basis: 50%;
+        max-width: 400px;
+        margin-inline: 1.25rem;
     }
 
     input {
@@ -719,8 +723,9 @@ svg {
         position: relative;
         right: 0;
         bottom: 0;
-        top: 18rem;
-        padding-bottom: 4rem;
+        /* top: 13rem; */
+        padding-bottom: 1rem;
+        align-self: center;
     }
 
 }
@@ -742,13 +747,13 @@ svg {
         --fz-a-5: clamp(0.65rem, 0.6rem + 1vw, 1rem);
         --fz-a-6: clamp(0.5rem, 0.35rem + 1vw, 1rem);
         --fz-a-7: clamp(0.6rem, 0.4rem + 0.85vw, 0.85rem); */
-        font-size: 14px;
+        font-size: 15px;
     }
 
 
     #org-logo {
-        height: clamp(5rem, 1rem + 2vw, 10rem);
-        width: clamp(5rem, 1rem + 2vw, 10rem);;
+        height: 7rem;
+        width: 7rem;
         filter: none;
     }
     body {
@@ -758,22 +763,26 @@ svg {
     #org-info {
         width: clamp(25ch, 80%, 60ch);
     }
-
+/* 
     #form-body {
         top: 13rem;
+    } */
+    
+    #fields {
+        gap: 2vh;
     }
 
     label {
         min-width: 200px;   
-        padding: 0 10%;
+        /* padding: 0 1.5rem; */
     }
 
     h2 {
         padding: 0 10%;
     }
 
-    #copyright {
+    /* #copyright {
         top: 12rem;
         padding-bottom: 2rem;
-    }
+    } */
 }
